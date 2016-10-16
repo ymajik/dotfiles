@@ -11,7 +11,6 @@ Plugin 'VundleVim/Vundle.vim'
 " plugin on GitHub repo
 " Plugin 'tpope/vim-fugitive'
 " plugin from http://vim-scripts.org/vim/scripts.html
-Plugin 'ferm.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/syntastic'
@@ -22,6 +21,7 @@ Plugin 'chase/vim-ansible-yaml'
 Plugin 'rodjek/vim-puppet'
 Plugin 'godlygeek/tabular'
 Plugin 'lokaltog/vim-powerline'
+Plugin 'cometsong/ferm.vim'
 " Git plugin not hosted on GitHub
 " Plugin 'git://git.wincent.com/command-t.git'
 " git repos on your local machine (i.e. when working on your own plugin)
@@ -62,3 +62,16 @@ syntax enable
 
 " powerline
 let g:Powerline_symbols = 'fancy'
+
+" NERDtree
+map <C-n> :NERDTreeToggle<CR>
+
+" statusline
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
