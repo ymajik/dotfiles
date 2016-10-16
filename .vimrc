@@ -20,6 +20,8 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'chase/vim-ansible-yaml'
 Plugin 'rodjek/vim-puppet'
+Plugin 'godlygeek/tabular'
+Plugin 'lokaltog/vim-powerline'
 " Git plugin not hosted on GitHub
 " Plugin 'git://git.wincent.com/command-t.git'
 " git repos on your local machine (i.e. when working on your own plugin)
@@ -33,6 +35,7 @@ Plugin 'rodjek/vim-puppet'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
+
 filetype plugin indent on    " required
 
 syntax on               " enable syntax highlighting
@@ -56,4 +59,6 @@ filetype plugin on      " enable filetype-specific plugins
 
 
 syntax enable
-set background=dark
+
+" powerline
+let g:Powerline_symbols = 'fancy'
