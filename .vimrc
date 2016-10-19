@@ -3,7 +3,6 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
-
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
@@ -13,6 +12,7 @@ Plugin 'VundleVim/Vundle.vim'
 " plugin from http://vim-scripts.org/vim/scripts.html
 Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-git'
 Plugin 'scrooloose/syntastic'
 Plugin 'tpope/vim-surround'
 Plugin 'altercation/vim-colors-solarized'
@@ -20,7 +20,7 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'chase/vim-ansible-yaml'
 Plugin 'rodjek/vim-puppet'
 Plugin 'godlygeek/tabular'
-Plugin 'lokaltog/vim-powerline'
+Plugin 'powerline/powerline'
 Plugin 'cometsong/ferm.vim'
 " Git plugin not hosted on GitHub
 " Plugin 'git://git.wincent.com/command-t.git'
@@ -57,11 +57,10 @@ filetype on             " enable filetype detection
 filetype indent on      " enable filetype-specific indenting
 filetype plugin on      " enable filetype-specific plugins
 
-
 syntax enable
 
 " powerline
-let g:Powerline_symbols = 'fancy'
+" let g:Powerline_symbols = 'fancy'
 
 " NERDtree
 map <C-n> :NERDTreeToggle<CR>
