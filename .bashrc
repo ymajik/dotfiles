@@ -157,3 +157,34 @@ else
 	printf "ERROR: An RVM installation was not found.\n"
 fi
 
+
+# functions
+
+function updupgr {
+YUM_CMD=$(which yum)
+APT_GET_CMD=$(which apt-get)
+
+if [[ ! -z $YUM_CMD ]]; then
+	yum update
+elif [[ ! -z $APT_GET_CMD ]]; then
+	apt-get update && apt-get upgrade
+else
+	echo "error can't update"
+	exit 1;
+fi
+}
+
+function clean {
+YUM_CMD=$(which yum)
+APT_GET_CMD=$(which apt-get)
+
+if [[ ! -z $YUM_CMD ]]; then
+	yum clean all --enablerepo=*
+elif [[ ! -z $APT_GET_CMD ]]; then
+	apt-get autoclean && apt-get autoremove
+else
+	echo "error can't clean"
+	exit 1;
+fi
+}
+
