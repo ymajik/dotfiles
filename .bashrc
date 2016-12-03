@@ -110,6 +110,10 @@ fi
 if [ -f /usr/bin/screenfetch ]; then screenfetch;
 fi
 
+# enable puppet commands
+if [ -f /opt/puppetlabs/bin/puppet ]; then source /etc/profile.d/puppet-agent.sh; 
+fi
+
 # set umask
 # umask 027
 
@@ -187,4 +191,3 @@ else
 	exit 1;
 fi
 }
-
