@@ -191,3 +191,11 @@ else
 	exit 1;
 fi
 }
+
+function psmem() {
+  ps aux  | awk '{print $6/1024 " MB\t\t" $11}'  | sort -n
+}
+
+function whichterm(){
+ ps -o 'cmd=' -p $(ps -o 'ppid=' -p $$)
+}
