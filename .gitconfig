@@ -27,4 +27,25 @@
 # alias
 
 [alias]
-    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+	ci = commit -v
+	a = add .
+	ca = commit -a
+	clo = clone
+	co = checkout
+	log = log -M --decorate --graph --oneline
+	sth = stash
+	st = status
+	br = branch
+	rc = rebase --continue
+	pur = pull --rebase
+	dh = diff HEAD
+[push]
+	default = matching
+
+[branch]
+	autosetuprebase = always
+[merge]
+	ff = true
+[rebase]
+	autoStash = true
