@@ -7,6 +7,12 @@
 	excludesfile = ~/.gitignore
 [push]
 	default = matching
+[branch]
+	autosetuprebase = always
+[merge]
+	ff = true
+[rebase]
+	autoStash = true
 [color]
 	ui = auto
 [color "branch"]
@@ -24,8 +30,6 @@
 	changed = yellow bold
 	untracked = red bold
 
-# alias
-
 [alias]
 	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
 	ci = commit -v
@@ -40,12 +44,3 @@
 	rc = rebase --continue
 	pur = pull --rebase
 	dh = diff HEAD
-[push]
-	default = matching
-
-[branch]
-	autosetuprebase = always
-[merge]
-	ff = true
-[rebase]
-	autoStash = true
