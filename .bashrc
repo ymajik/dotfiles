@@ -1,6 +1,4 @@
 # ~/.bashrc: executed by bash(1) for non-login shells.
-# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
-# for examples
 
 # If not running interactively, don't do anything
 case $- in
@@ -16,8 +14,8 @@ HISTCONTROL=ignoreboth
 shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=10000
-HISTFILESIZE=20000
+HISTSIZE=50000
+HISTFILESIZE=100000
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -78,11 +76,6 @@ if [ -x /usr/bin/dircolors ]; then
     alias ls='ls --color=auto'
 fi
 
-# Alias definitions.
-# You may want to put all your additions into a separate file like
-# ~/.bash_aliases, instead of adding them here directly.
-# See /usr/share/doc/bash-doc/examples in the bash-doc package.
-
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
@@ -98,104 +91,12 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# powerline advanced terminal info
-if [ -f `which powerline-daemon` ]; then
-powerline-daemon -q
-	POWERLINE_BASH_CONTINUATION=1
-	POWERLINE_BASH_SELECT=1
-	. /usr/share/powerline/bindings/bash/powerline.sh
-fi
-
-# enable screenfetch system info
-if [ -f /usr/bin/screenfetch ]; then screenfetch;
-fi
-
-# enable puppet commands
-if [ -f /opt/puppetlabs/bin/puppet ]; then source /etc/profile.d/puppet-agent.sh; 
-fi
-
 # set umask
-# umask 027
+umask 027
 
-## functions
-function extract {
- if [ -z "$1" ]; then
-    # display usage if no parameters given
-    echo "Usage: extract <path/file_name>.<zip|rar|bz2|gz|tar|tbz2|tgz|Z|7z|xz|ex|tar.bz2|tar.gz|tar.xz>"
- else
-    if [ -f $1 ] ; then
-        # NAME=${1%.*}
-        # mkdir $NAME && cd $NAME
-        case $1 in
-          *.tar.bz2)   tar xvjf ../$1    ;;
-          *.tar.gz)    tar xvzf ../$1    ;;
-          *.tar.xz)    tar xvJf ../$1    ;;
-          *.lzma)      unlzma ../$1      ;;
-          *.bz2)       bunzip2 ../$1     ;;
-          *.rar)       unrar x -ad ../$1 ;;
-          *.gz)        gunzip ../$1      ;;
-          *.tar)       tar xvf ../$1     ;;
-          *.tbz2)      tar xvjf ../$1    ;;
-          *.tgz)       tar xvzf ../$1    ;;
-          *.zip)       unzip ../$1       ;;
-          *.Z)         uncompress ../$1  ;;
-          *.7z)        7z x ../$1        ;;
-          *.xz)        unxz ../$1        ;;
-          *.exe)       cabextract ../$1  ;;
-          *)           echo "extract: '$1' - unknown archive method" ;;
-        esac
-    else
-        echo "$1 - file does not exist"
-    fi
-fi
-}
-
-# Load RVM into a shell session *as a function*
-if [[ -s "$HOME/.rvm/scripts/rvm" ]] ; then
-	# First try to load from a user install
-	source "$HOME/.rvm/scripts/rvm"
-elif [[ -s "/usr/local/rvm/scripts/rvm" ]] ; then
-	# Then try to load from a root install
-	source "/usr/local/rvm/scripts/rvm"
-else
-	printf "ERROR: An RVM installation was not found.\n"
-fi
-
-
-# functions
-
-function updupgr {
-YUM_CMD=$(which yum)
-APT_GET_CMD=$(which apt-get)
-
-if [[ ! -z $YUM_CMD ]]; then
-	yum update
-elif [[ ! -z $APT_GET_CMD ]]; then
-	apt-get update && apt-get upgrade
-else
-	echo "error can't update"
-	exit 1;
-fi
-}
-
-function clean {
-YUM_CMD=$(which yum)
-APT_GET_CMD=$(which apt-get)
-
-if [[ ! -z $YUM_CMD ]]; then
-	yum clean all --enablerepo=*
-elif [[ ! -z $APT_GET_CMD ]]; then
-	apt-get autoclean && apt-get autoremove
-else
-	echo "error can't clean"
-	exit 1;
-fi
-}
-
-function psmem() {
-  ps aux  | awk '{print $6/1024 " MB\t\t" $11}'  | sort -n
-}
-
-function whichterm(){
- ps -o 'cmd=' -p $(ps -o 'ppid=' -p $$)
-}
+# source bashrc.d 
+for file in ~/.bashrc.d/*.bashrc;
+do
+   source "$file"
+done
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
