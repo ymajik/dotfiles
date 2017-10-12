@@ -1,3 +1,3 @@
 # dotfiles
 
-Collection of usefull dotfiles
+My collection ofdotfiles
