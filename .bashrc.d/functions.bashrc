@@ -59,15 +59,15 @@ exit 1;
 fi
 }
 
-function psmem() {
+psmem() {
   ps aux  | awk '{print $6/1024 " MB\t\t" $11}'  | sort -n
 }
 
-function killvpn() {
+killvpn() {
  sudo kill $(pgrep pulsesvc); sleep 3; sudo route -n
 }
 
-function whichterm(){
+whichterm(){
  ps -o 'cmd=' -p $(ps -o 'ppid=' -p $$)
 }
 
@@ -80,10 +80,6 @@ dstats(){
 	sudo docker stats $(sudo docker ps --format '{{.Names}}')
 }
 
-ytdl(){
-  sudo docker run -ti --rm -u $(id -u):$(id -g) -v $PWD:/data ytdl-alpine
-}
-
 fixsound(){
-pulseaudio -k && alsa force-reload
+pulseaudio -k && sudo alsa force-reload
 }
