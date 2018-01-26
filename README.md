@@ -1,3 +1,3 @@
 # dotfiles
 
-My collection ofdotfiles
+My collection of dotfiles
